@@ -1,0 +1,116 @@
+<div class="container mx-auto px-4">
+
+    <app-job-search></app-job-search>
+
+    <div class="flex flex-col md:flex-row">
+        <!-- Filter Column (30%) -->
+        <div class="w-full md:w-1/3 p-4 space-y-4">
+            <p class="text-lg font-semibold mb-2">Job Filter:</p>
+
+            <mat-accordion>
+                <!-- Location Category -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Location
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Enter Location</mat-label>
+                        <input matInput placeholder="Location"
+                            class="rounded-full w-full focus:outline-none focus:ring focus:border-blue-300" />
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <!-- Job Type Category -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Job Type
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Job Type</mat-label>
+                        <mat-select class="w-full">
+                            <mat-option value="fullTime">Full Time</mat-option>
+                            <mat-option value="partTime">Part Time</mat-option>
+                            <mat-option value="contract">Contract</mat-option>
+                            <mat-option value="temporary">Temporary</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <!-- Experience Level Category -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Experience Level
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Experience Level</mat-label>
+                        <mat-select class="w-full">
+                            <mat-option value="entryLevel">Entry Level</mat-option>
+                            <mat-option value="midLevel">Mid Level</mat-option>
+                            <mat-option value="seniorLevel">Senior Level</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <!-- Salary Range Category -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Salary Range
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="flex space-x-4">
+                        <mat-form-field>
+                            <mat-label>Min Salary</mat-label>
+                            <input matInput type="number" placeholder="Min"
+                                class="rounded-full w-full focus:outline-none focus:ring focus:border-blue-300" />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Max Salary</mat-label>
+                            <input matInput type="number" placeholder="Max"
+                                class="rounded-full w-full focus:outline-none focus:ring focus:border-blue-300" />
+                        </mat-form-field>
+                    </div>
+                </mat-expansion-panel>
+
+                <!-- Sorting Options -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Sort By
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <mat-label>Sort By</mat-label>
+                        <mat-select class="w-full">
+                            <mat-option value="recent">Most Recent</mat-option>
+                            <mat-option value="salary">Salary</mat-option>
+                            <mat-option value="experience">Experience Level</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <!-- Apply Filters Button -->
+                <button mat-raised-button color="accent" class="w-full mt-4">
+                    Apply Filters
+                </button>
+            </mat-accordion>
+        </div>
+
+        <!-- Job Listing Section (70%) -->
+        <div class="w-full md:w-2/3 p-4">
+            <p class="text-lg font-semibold mb-2">Job Listings:</p>
+            <app-job-listing></app-job-listing>
+            <!-- Mat Paginator -->
+            <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)">
+            </mat-paginator>
+
+        </div>
+    </div>
+</div>

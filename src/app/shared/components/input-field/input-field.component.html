@@ -1,0 +1,39 @@
+<div [formGroup]="form" class="mb-6">
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ label }}</mat-label>
+        <ng-container [ngSwitch]="type">
+
+            <input matInput *ngSwitchCase="'text'" [formControlName]="controlName"
+                [attr.disabled]="!isDirty() ? 'disabled' : null" />
+
+            <input matInput *ngSwitchCase="'email'" [formControlName]="controlName" />
+
+            <mat-select *ngSwitchCase="'select'" [formControlName]="controlName" class="w-full" [multiple]="isMultiple">
+                <mat-option *ngFor="let option of options" [value]="option.value">{{ option.label }}</mat-option>
+            </mat-select>
+
+            <textarea matInput *ngSwitchCase="'textarea'" [formControlName]="controlName"
+                placeholder="Ex. It makes me feel..." class="w-full"></textarea>
+
+            <input matInput *ngSwitchCase="'password'" [formControlName]="controlName" type="password" />
+
+            <input matInput *ngSwitchCase="'search'" [formControlName]="controlName" type="search" />
+
+            <input matInput *ngSwitchCase="'url'" [formControlName]="controlName" type="url" />
+
+            <input matInput *ngSwitchCase="'number'" [formControlName]="controlName" type="number" />
+            <mat-checkbox *ngSwitchCase="'checkbox'" [formControlName]="controlName"> {{ label }} </mat-checkbox>
+
+            <div *ngSwitchCase="'radio'" class="flex flex-col">
+                <mat-radio-group [formControlName]="controlName">
+                    <mat-radio-button *ngFor="let option of options" [value]="option.value">{{ option.label
+                        }}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+        </ng-container>
+
+        <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+        <mat-error *ngIf="showValidationErrors()">{{ getValidationErrorMessage() }}</mat-error>
+    </mat-form-field>
+</div>

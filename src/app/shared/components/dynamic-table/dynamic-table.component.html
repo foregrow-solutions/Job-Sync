@@ -1,0 +1,31 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="mat-table" matSort matSortActive="position" matSortDirection="asc">
+
+        <!-- Generate columns dynamically -->
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</th>
+            <td mat-cell *matCellDef="let element">{{ element[column.field] }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+                <!-- Dynamic generation of action buttons -->
+                <button mat-icon-button *ngFor="let action of actions"
+                    (click)="onActionClicked(action.action, element)">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- Header row with generated columns -->
+        <tr mat-header-row *matHeaderRowDef="getColumnFields()"></tr>
+
+        <!-- Data row with generated columns -->
+        <tr mat-row *matRowDef="let row; columns: getColumnFields()"></tr>
+    </table>
+
+    <!-- MatPaginator for pagination -->
+    <mat-paginator [length]="totalItems" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSizeOptions[0]"
+        (page)="onPageChanged($event)">
+    </mat-paginator>
+</div>

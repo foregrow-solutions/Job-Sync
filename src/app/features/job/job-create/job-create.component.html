@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="max-w-2xl mx-auto p-6 bg-white shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Create Job</h2>
+
+    <app-input-field [label]="'Job Title'" [type]="'text'" [controlName]="'title'" [form]="form"
+        class="mb-4"></app-input-field>
+
+    <app-input-field [label]="'Description'" [type]="'textarea'" [controlName]="'description'" [form]="form"
+        class="mb-4"></app-input-field>
+
+    <app-input-field [label]="'Education'" [type]="'select'" [controlName]="'education'" [form]="form"
+        [options]="educationOptions" [isMultiple]="true" class="mb-4"></app-input-field>
+
+    <app-input-field [label]="'Skills'" [type]="'select'" [controlName]="'skills'" [form]="form"
+        [options]="skillOptions" [isMultiple]="true" class="mb-4"></app-input-field>
+
+    <button type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
+        Create Job
+    </button>
+</form>

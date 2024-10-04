@@ -1,0 +1,20 @@
+<!-- job-search.component.html -->
+<div class="container mx-auto p-4 flex items-center justify-center">
+    <div class="flex flex-col space-y-4 w-full max-w-lg">
+        <div class="flex items-center space-x-4">
+            <mat-form-field class="flex-1">
+                <mat-label>Enter skills / designations / companies</mat-label>
+                <input matInput placeholder="Type and select skills" [matAutocomplete]="auto"
+                    class="rounded-full w-full py-2 px-4 focus:outline-none focus:ring focus:border-blue-300 border-none"
+                    (input)="onSkillInput($event)" />
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let skill of skills" (onSelectionChange)="addSkill(skill)">
+                        {{ skill }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <button class="bg-blue-500 text-white py-2 px-4 rounded" (click)="searchJobs()">Search</button>
+        </div>
+    </div>
+</div>
